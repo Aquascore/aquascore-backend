@@ -1,6 +1,8 @@
 package com.aquascore.api.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -10,16 +12,23 @@ public class User {
     private Long id;
 
     @Column(unique = true)
+    @NotNull
     private String email;
 
     @Column
+    @NotNull
     private String password;
 
+    @NotNull
     @Column(name = "first_name")
     private String firstName;
 
+    @NotNull
     @Column(name = "last_name")
     private String lastName;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    List<Role> roles;
 
     public User() {
     }
@@ -47,6 +56,14 @@ public class User {
         return firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -63,7 +80,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

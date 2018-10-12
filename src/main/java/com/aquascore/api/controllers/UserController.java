@@ -2,9 +2,13 @@ package com.aquascore.api.controllers;
 
 import com.aquascore.api.models.User;
 import com.aquascore.api.repositories.UserRepository;
+import com.aquascore.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users/")
@@ -12,23 +16,30 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/")
     public @ResponseBody
     Iterable<User> home() {
         return repository.findAll();
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/me")
     public @ResponseBody
-    User home(@PathVariable String email) {
-        return repository.findByEmail(email);
+    User current(HttpServletRequest req) {
+        return userService.getCurrentUser(req);
     }
 
-    @PostMapping("/")
+    @PostMapping("/sign-up")
     public @ResponseBody
-    User create(@RequestBody User newUser) {
-        newUser.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
+    User signUp(@Valid @RequestBody User newUser) {
+        return userService.signUp(newUser);
+    }
 
-        return repository.save(newUser);
+    @PostMapping("/sign-in")
+    public @ResponseBody
+    Map<String, String> signIn(@RequestBody User user) {
+        return userService.signIn(user.getEmail(), user.getPassword());
     }
 }
