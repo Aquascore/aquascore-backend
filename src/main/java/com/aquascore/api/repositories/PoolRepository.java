@@ -9,5 +9,7 @@ import java.util.List;
 public interface PoolRepository extends JpaRepository<Pool, Long> {
     Pool findById(long id);
 
+    List<Pool> findByUsers(User user);
+
     List<Pool> findByOwner(User owner);
 }

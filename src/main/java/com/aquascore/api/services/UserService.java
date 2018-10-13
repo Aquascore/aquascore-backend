@@ -44,14 +44,14 @@ public class UserService {
     }
 
 
-    public User signUp(User user) {
-        if (!userRepository.existsByEmail(user.getEmail())) {
-            user.setRoles(new ArrayList<>(Arrays.asList(Role.ROLE_USER)));
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public User signUp(User newUser) {
+        if (!userRepository.existsByEmail(newUser.getEmail())) {
+            newUser.setRoles(new ArrayList<>(Arrays.asList(Role.ROLE_USER)));
+            newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
 
-            userRepository.save(user);
+            userRepository.save(newUser);
 
-            return user;
+            return newUser;
         } else {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "E-mail is already in use");
         }
@@ -59,5 +59,9 @@ public class UserService {
 
     public User getCurrentUser(HttpServletRequest req) {
         return userRepository.findByEmail(jwtTokenProvider.getEmail(jwtTokenProvider.resolveToken(req)));
+    }
+
+    public User findById(long id) {
+        return userRepository.findById(id);
     }
 }

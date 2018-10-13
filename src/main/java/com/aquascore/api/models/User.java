@@ -1,7 +1,7 @@
 package com.aquascore.api.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -12,18 +12,18 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    @NotNull
+    @NotBlank
     private String email;
 
     @Column
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     @Column(name = "first_name")
     private String firstName;
 
-    @NotNull
+    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 

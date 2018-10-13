@@ -1,7 +1,11 @@
 package com.aquascore.api.models;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +16,7 @@ public class Pool {
     private Long id;
 
     @Column
-    @NotNull
+    @NotBlank
     private String name;
 
     @ManyToOne
@@ -20,10 +24,15 @@ public class Pool {
     @NotNull
     private User owner;
 
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @Nullable
+    private Pool parent;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "pool_user",
-        joinColumns = {@JoinColumn(name = "id")}
+        joinColumns = {@JoinColumn(name = "pool_id")}
     )
     private List<User> users;
 
@@ -49,5 +58,25 @@ public class Pool {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public boolean isOwner(User user) {
+        return user.equals(owner);
+    }
+
+    public void addMember(User user) {
+        if (users == null) {
+            users = new ArrayList<>();
+        }
+
+        users.add(user);
+    }
+
+    public void removeMember(User user) {
+        if (users == null) {
+            return;
+        }
+
+        users.remove(user);
     }
 }

@@ -26,10 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Entry points
-        http.authorizeRequests()//
+        http.authorizeRequests()
             .antMatchers("/users/sign-in").permitAll()
             .antMatchers("/users/sign-up").permitAll()
-            // Disallow everything else..
+            // Disallow everything else
             .anyRequest().authenticated();
 
         // Apply JWT
