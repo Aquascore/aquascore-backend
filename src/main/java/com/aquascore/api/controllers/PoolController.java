@@ -24,21 +24,21 @@ public class PoolController {
         return poolService.create(newPool, req);
     }
 
-    @PatchMapping("/{pool_id}/{user_id}")
+    @PatchMapping("/{pool_id}/users/{user_id}")
     public Pool addUser(@PathVariable("pool_id") long poolId,
                         @PathVariable("user_id") long userId,
                         HttpServletRequest req) {
         return poolService.addUser(poolId, userId, req);
     }
 
-    @DeleteMapping("/{pool_id}/{user_id}")
+    @DeleteMapping("/{pool_id}/users/{user_id}")
     public Pool removeUser(@PathVariable("pool_id") long poolId,
                            @PathVariable("user_id") long userId,
                            HttpServletRequest req) {
         return poolService.removeUser(poolId, userId, req);
     }
 
-    @DeleteMapping("/{pool_id}/")
+    @DeleteMapping("/{pool_id}")
     public void removePool(@PathVariable("pool_id") long poolId,
                            HttpServletRequest req) {
         poolService.remove(poolId, req);
