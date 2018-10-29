@@ -29,7 +29,7 @@ public class JwtTokenProvider {
     private String secretKey;
 
     @Value("${security.jwt.token.expire-length:3600000}")
-    private long validityInMilliseconds = 3600000; // 1h
+    private long validityInSeconds = 2678400; // 1 months
 
     @Autowired
     private MyUserDetails myUserDetails;
@@ -44,7 +44,7 @@ public class JwtTokenProvider {
         claims.put("auth", roles.stream().map(s -> new SimpleGrantedAuthority(s.getAuthority())).filter(Objects::nonNull).collect(Collectors.toList()));
 
         Date now = new Date();
-        Date validity = new Date(now.getTime() + validityInMilliseconds);
+        Date validity = new Date(now.getTime() + validityInSeconds * 1000);
 
         return Jwts.builder()
             .setClaims(claims)

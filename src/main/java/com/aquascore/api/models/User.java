@@ -1,8 +1,13 @@
 package com.aquascore.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
 @Entity
 @Table(name = "user")
@@ -17,6 +22,7 @@ public class User {
 
     @Column
     @NotBlank
+    @JsonProperty(access = WRITE_ONLY)
     private String password;
 
     @NotBlank
@@ -28,6 +34,7 @@ public class User {
     private String lastName;
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @JsonIgnore
     List<Role> roles;
 
     public User() {
