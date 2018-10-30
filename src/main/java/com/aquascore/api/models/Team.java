@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "team")
 public class Team{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

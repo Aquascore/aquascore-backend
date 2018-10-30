@@ -6,17 +6,15 @@ import com.aquascore.api.models.Driver;
 import com.aquascore.api.repositories.DriverRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DriverService{
     @Autowired
     private DriverRepository driverRepository;
 
     public List<Driver> getAll(){
         return driverRepository.findAll();
-    }
-
-    public List<Driver> getFromTeam(long teamId){
-        return driverRepository.findByTeam(teamId);
     }
 
     public Driver create(Driver newDriver){
