@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -63,5 +60,9 @@ public class UserService {
 
     public User findById(long id) {
         return userRepository.findById(id);
+    }
+
+    public List<User> findByNameOrEmail(String query) {
+        return userRepository.findAllByEmailContainingOrFirstNameContainingOrLastNameContaining(query, query, query);
     }
 }

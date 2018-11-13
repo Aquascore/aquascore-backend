@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.aquascore.api.models.Driver;
 import com.aquascore.api.services.DriverService;
+import com.aquascore.api.services.TeamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,9 @@ public class DriverController{
     @Autowired
     DriverService driverService;
 
+    @Autowired
+    TeamService teamService;
+
     @GetMapping("/")
     public List<Driver> getall(){
         return driverService.getAll();
@@ -28,7 +32,9 @@ public class DriverController{
 
     @PostMapping("/")
     public Driver create(@RequestBody Driver newDriver){
-        return driverService.create(newDriver);
+        Driver temp = driverService.create(newDriver);
+        teamService.addDriver(temp.getTeamid(), temp.getId());
+        return newDriver;
     }
 
     @PatchMapping("/{driver_id}")
