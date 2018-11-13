@@ -43,7 +43,7 @@ public class DriverController{
     }
 
     @DeleteMapping("/{driver_id}")
-    public void remove(@PathVariable("{driver_id}") long driverId){
+    public void remove(@PathVariable("driver_id") long driverId){
         driverService.remove(driverId);
     }
 }
