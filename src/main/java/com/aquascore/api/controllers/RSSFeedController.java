@@ -1,19 +1,16 @@
 package com.aquascore.api.controllers;
 
-import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.io.FeedException;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
-
-import java.io.*;
-import java.net.*;
-import org.json.JSONObject;
-import org.json.XML;
 
 @RestController
 @RequestMapping("/news/")
@@ -21,7 +18,7 @@ public class RSSFeedController {
 
     @RequestMapping(value = "/", produces = "applications/json")
     @ResponseBody
-    private String readRSSFeed() throws IOException, FeedException {
+    private String readRSSFeed() {
         String xmlString = readUrlToString("http://feeds.bbci.co.uk/sport/formula1/rss.xml?edition=uk");
         JSONObject xmlJSONObj = XML.toJSONObject(xmlString);
 
@@ -50,9 +47,12 @@ public class RSSFeedController {
             e.printStackTrace();
         } finally {
             if (reader != null) {
-                try { reader.close(); } catch (IOException ignoreOnClose) { }
+                try {
+                    reader.close();
+                } catch (IOException ignoreOnClose) {
+                }
             }
         }
         return result;
-    } 
+    }
 }
