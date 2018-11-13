@@ -117,6 +117,62 @@ INSERT INTO `pool_user` VALUES (14,5),(14,2),(14,4),(14,3),(14,1),(20,4),(20,5),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `race`
+--
+
+DROP TABLE IF EXISTS `race`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `race` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `score` bigint(20) DEFAULT NULL,
+  `pool_id` bigint(20) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK8hsec7gp8a1q5phn2uhip16cj` (`pool_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `race`
+--
+
+LOCK TABLES `race` WRITE;
+/*!40000 ALTER TABLE `race` DISABLE KEYS */;
+/*!40000 ALTER TABLE `race` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `race_budget`
+--
+
+DROP TABLE IF EXISTS `race_budget`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `race_budget` (
+  `id` bigint(20) NOT NULL,
+  `budget` bigint(20) DEFAULT NULL,
+  `pool_id` bigint(20) NOT NULL,
+  `race_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK63jsr71ofer3f6rnq2rk1kmy1` (`pool_id`),
+  KEY `FKj5rtxyvdsf2pgub9u4tf8wx2b` (`race_id`),
+  KEY `FK6gbn88ok7smb75d9jhgdua0xd` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `race_budget`
+--
+
+LOCK TABLES `race_budget` WRITE;
+/*!40000 ALTER TABLE `race_budget` DISABLE KEYS */;
+/*!40000 ALTER TABLE `race_budget` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `team`
 --
 
@@ -253,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-13 14:42:19
+-- Dump completed on 2018-11-13 14:59:11
