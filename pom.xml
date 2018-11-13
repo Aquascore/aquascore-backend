@@ -75,6 +75,11 @@
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
     <dependency>
+      <groupId>rome</groupId>
+      <artifactId>rome</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
       <!-- JSON Web Token Support -->
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt</artifactId>
@@ -84,7 +89,12 @@
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
         <version>2.3.0</version>
-</dependency>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20171018</version>
+    </dependency>
   </dependencies>
 
   <build>
