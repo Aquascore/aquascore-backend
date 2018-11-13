@@ -28,7 +28,7 @@ public class DriverService{
         oldDriver.setFirstname(newDriver.getFirstname());
         oldDriver.setLastname(newDriver.getLastname());
         oldDriver.setSalary(newDriver.getSalary());
-        oldDriver.setTeamId(newDriver.getTeamId());
+        oldDriver.setTeamid(newDriver.getTeamid());
 
         driverRepository.save(oldDriver);
         return oldDriver;
