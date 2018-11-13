@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `driver`
+--
+
+DROP TABLE IF EXISTS `driver`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver` (
+  `id` bigint(20) NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `salary` float NOT NULL,
+  `team_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver`
+--
+
+LOCK TABLES `driver` WRITE;
+/*!40000 ALTER TABLE `driver` DISABLE KEYS */;
+/*!40000 ALTER TABLE `driver` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `hibernate_sequence`
 --
 
@@ -33,7 +59,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (8),(8);
+INSERT INTO `hibernate_sequence` VALUES (24),(24);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +87,7 @@ CREATE TABLE `pool` (
 
 LOCK TABLES `pool` WRITE;
 /*!40000 ALTER TABLE `pool` DISABLE KEYS */;
-INSERT INTO `pool` VALUES (6,'Besties',5,NULL),(7,'Max Fan Club',1,NULL);
+INSERT INTO `pool` VALUES (14,'Max Fan Club',1,NULL),(20,'Real Friends',1,NULL);
 /*!40000 ALTER TABLE `pool` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,8 +112,56 @@ CREATE TABLE `pool_user` (
 
 LOCK TABLES `pool_user` WRITE;
 /*!40000 ALTER TABLE `pool_user` DISABLE KEYS */;
-INSERT INTO `pool_user` VALUES (6,3),(6,1),(6,5),(6,2),(6,4),(7,3),(7,1),(7,3),(7,4);
+INSERT INTO `pool_user` VALUES (14,5),(14,2),(14,4),(14,3),(14,1),(20,4),(20,5),(20,1);
 /*!40000 ALTER TABLE `pool_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `team`
+--
+
+DROP TABLE IF EXISTS `team`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `team` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `teamcol` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `team`
+--
+
+LOCK TABLES `team` WRITE;
+/*!40000 ALTER TABLE `team` DISABLE KEYS */;
+/*!40000 ALTER TABLE `team` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `team_drivers`
+--
+
+DROP TABLE IF EXISTS `team_drivers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `team_drivers` (
+  `team_id` bigint(20) NOT NULL,
+  `drivers_id` bigint(20) NOT NULL,
+  UNIQUE KEY `UK_kk3mc17645emt6j07he9odrce` (`drivers_id`),
+  KEY `FKe9i3gmxb5yfer3e69a6a8y7f2` (`team_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `team_drivers`
+--
+
+LOCK TABLES `team_drivers` WRITE;
+/*!40000 ALTER TABLE `team_drivers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `team_drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -141,6 +215,34 @@ LOCK TABLES `user_roles` WRITE;
 INSERT INTO `user_roles` VALUES (1,1),(2,1),(3,1),(4,1),(5,1);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user_score`
+--
+
+DROP TABLE IF EXISTS `user_score`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_score` (
+  `id` bigint(20) NOT NULL,
+  `score` bigint(20) DEFAULT NULL,
+  `pool_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKnxaq5u5sge208wdbei73xem3h` (`pool_id`),
+  KEY `FKesr0lr9crmb0ue7ns8ypricjf` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_score`
+--
+
+LOCK TABLES `user_score` WRITE;
+/*!40000 ALTER TABLE `user_score` DISABLE KEYS */;
+INSERT INTO `user_score` VALUES (15,0,14,5),(16,0,14,2),(17,0,14,4),(18,0,14,3),(19,0,14,1),(21,0,20,4),(22,0,20,5),(23,0,20,1);
+/*!40000 ALTER TABLE `user_score` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -151,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-30 12:41:30
+-- Dump completed on 2018-11-13 14:42:19

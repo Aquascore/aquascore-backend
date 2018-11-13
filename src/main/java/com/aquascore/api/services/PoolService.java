@@ -1,8 +1,10 @@
 package com.aquascore.api.services;
 
 import com.aquascore.api.models.Pool;
+import com.aquascore.api.models.Score;
 import com.aquascore.api.models.User;
 import com.aquascore.api.repositories.PoolRepository;
+import com.aquascore.api.repositories.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ import java.util.List;
 public class PoolService {
     @Autowired
     private PoolRepository poolRepository;
+
+    @Autowired
+    private ScoreRepository scoreRepository;
 
     @Autowired
     private UserService userService;
@@ -30,6 +35,11 @@ public class PoolService {
         newPool.addMember(currentUser);
 
         poolRepository.save(newPool);
+
+        // Initialize pool scores
+        for (User user : newPool.getUsers()) {
+            scoreRepository.save(new Score(user, newPool, 0));
+        }
 
         return newPool;
     }
@@ -59,6 +69,9 @@ public class PoolService {
         pool.addMember(newMember);
 
         poolRepository.save(pool);
+
+        // Initialize score
+        scoreRepository.save(new Score(newMember, pool, 0));
 
         return pool;
     }
