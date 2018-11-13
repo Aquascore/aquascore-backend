@@ -2,6 +2,7 @@ package com.aquascore.api.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "driver")
@@ -19,20 +20,13 @@ public class Driver{
     @Column(name = "last_name")
     private String lastname;
 
-    @NotBlank
+    @NotNull
     @Column
     private float salary;
 
-    @NotBlank
+    @NotNull
     @Column(name = "team_id")
-    private long teamId;
-
-    public Driver(String firstname, String lastname, float salary, long teamId){
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.salary = salary;
-        this.teamId = teamId;
-    }
+    private long teamid;
 
     public long getId() {
         return id;
@@ -62,11 +56,11 @@ public class Driver{
         this.salary = salary;
     }
 
-    public long getTeamId() {
-        return teamId;
+    public long getTeamid() {
+        return teamid;
     }
 
-    public void setTeamId(long teamId) {
-        this.teamId = teamId;
+    public void setTeamid(long teamid) {
+        this.teamid = teamid;
     }
 }

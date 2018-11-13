@@ -1,8 +1,5 @@
 package com.aquascore.api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -24,14 +21,12 @@ public class Team{
     @Column
     private String teamcol;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "team_drivers",
+        joinColumns = {@JoinColumn(name="team_id")}
+    )
     private List<Driver> drivers;
-
-    public Team(String name, String teamcol){
-        this.name = name;
-        this.teamcol = teamcol;
-    }
 
     public long getId() {
         return id;
