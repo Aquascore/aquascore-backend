@@ -79,4 +79,14 @@ public class Pool {
 
         users.remove(user);
     }
+
+    public boolean hasMember(User user) {
+        for (User member : users) {
+            if (member.equals(user)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -23,9 +23,24 @@ public class Score {
     @Column
     private Long score;
 
+    public Score() {
+    }
+
     public Score(User user, Pool pool, long score) {
         this.user = user;
         this.pool = pool;
         this.score = score;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Long getScore() {
+        return score;
     }
 }

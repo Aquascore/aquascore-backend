@@ -29,6 +29,18 @@ public class PoolService {
         return poolRepository.findByUsers(currentUser);
     }
 
+    public Pool getById(long id, HttpServletRequest req) {
+        User currentUser = userService.getCurrentUser(req);
+        Pool pool = poolRepository.findById(id);
+
+        if (!pool.hasMember(currentUser)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is " +
+                "not member of pool");
+        }
+
+        return pool;
+    }
+
     public Pool create(Pool newPool, HttpServletRequest req) {
         User currentUser = userService.getCurrentUser(req);
         newPool.setOwner(currentUser);

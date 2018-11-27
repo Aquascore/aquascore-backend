@@ -59,7 +59,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (24),(24);
+INSERT INTO `hibernate_sequence` VALUES (45),(45);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,8 +87,32 @@ CREATE TABLE `pool` (
 
 LOCK TABLES `pool` WRITE;
 /*!40000 ALTER TABLE `pool` DISABLE KEYS */;
-INSERT INTO `pool` VALUES (14,'Max Fan Club',1,NULL),(20,'Real Friends',1,NULL);
+INSERT INTO `pool` VALUES (14,'Max Fan Club',1,NULL),(39,'Real Friends',1,NULL);
 /*!40000 ALTER TABLE `pool` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pool_scores`
+--
+
+DROP TABLE IF EXISTS `pool_scores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pool_scores` (
+  `pool_id` bigint(20) NOT NULL,
+  `scores_id` bigint(20) NOT NULL,
+  UNIQUE KEY `UK_75tnrfw7mk1iyr19qup24t1up` (`scores_id`),
+  KEY `FKbvgb2qa2ovt6akl1k1a7qll06` (`pool_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pool_scores`
+--
+
+LOCK TABLES `pool_scores` WRITE;
+/*!40000 ALTER TABLE `pool_scores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pool_scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -112,7 +136,7 @@ CREATE TABLE `pool_user` (
 
 LOCK TABLES `pool_user` WRITE;
 /*!40000 ALTER TABLE `pool_user` DISABLE KEYS */;
-INSERT INTO `pool_user` VALUES (14,5),(14,2),(14,4),(14,3),(14,1),(20,4),(20,5),(20,1);
+INSERT INTO `pool_user` VALUES (14,5),(14,2),(14,4),(14,3),(14,1),(39,2),(39,3),(39,5),(39,4),(39,1);
 /*!40000 ALTER TABLE `pool_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +268,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'steven@aquascore.com','Steven','Oud','$2a$12$lPf693xF2MxiSPsLXZDBuuRuAx5.0HAx00pKnqeT4ZdCVOT5NOiKm'),(2,'yannick@aquascore.com','Yannick','de Graaff','$2a$12$jXjF0yN49M5yfaNtXc5h4e4CAVyTfuTJtJcLK1QOasMyBJHW/8JNC'),(3,'yessin@aquascore.com','Yessin','el Khaldi','$2a$12$3SDIyAl.UdS9wSqGOztwBeVZip.hfuVtmJeECO4OJNlTqpqLZYD0O'),(4,'gabriel@aquascore.com','Gabriel','Takyie','$2a$12$eC2tnlEebaT4QBp9IT9ltuw/I7FM41dzC6NiTG2NjbMX/9.DVbMIu'),(5,'leon@aquascore.com','Leon','Timmerman','$2a$12$JACKFn9AaXzO9zX1gh4zXOXNjdYtkWMyHCdQYf5ZbnfUJdDmGJyBO');
+INSERT INTO `user` VALUES (1,'steven@aquascore.com','Steven','Oud','$2a$12$lPf693xF2MxiSPsLXZDBuuRuAx5.0HAx00pKnqeT4ZdCVOT5NOiKm'),(2,'yannick@aquascore.com','Yannick','de Graaff','$2a$12$jXjF0yN49M5yfaNtXc5h4e4CAVyTfuTJtJcLK1QOasMyBJHW/8JNC'),(3,'yessin@aquascore.com','Yessin','el Khaldi','$2a$12$3SDIyAl.UdS9wSqGOztwBeVZip.hfuVtmJeECO4OJNlTqpqLZYD0O'),(4,'gabriel@aquascore.com','Gabriel','Takyie','$2a$12$eC2tnlEebaT4QBp9IT9ltuw/I7FM41dzC6NiTG2NjbMX/9.DVbMIu'),(5,'leon@aquascore.com','Leon','Timmerman','$2a$12$JACKFn9AaXzO9zX1gh4zXOXNjdYtkWMyHCdQYf5ZbnfUJdDmGJyBO'),(38,'stevenjong@aquascore.com','Steven','Jong','$2a$12$2bRkEs2RMxtVcQWN2ClRAOgTLtKXavhzrTyZDfZX7XSs9IbTx9i/O');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +292,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,1),(2,1),(3,1),(4,1),(5,1);
+INSERT INTO `user_roles` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(38,1);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +320,7 @@ CREATE TABLE `user_score` (
 
 LOCK TABLES `user_score` WRITE;
 /*!40000 ALTER TABLE `user_score` DISABLE KEYS */;
-INSERT INTO `user_score` VALUES (15,0,14,5),(16,0,14,2),(17,0,14,4),(18,0,14,3),(19,0,14,1),(21,0,20,4),(22,0,20,5),(23,0,20,1);
+INSERT INTO `user_score` VALUES (15,0,14,5),(16,0,14,2),(17,0,14,4),(18,0,14,3),(19,0,14,1),(40,0,39,5),(41,0,39,3),(42,0,39,2),(43,0,39,4),(44,0,39,1);
 /*!40000 ALTER TABLE `user_score` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -309,4 +333,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-13 14:59:11
+-- Dump completed on 2018-11-27 19:18:14

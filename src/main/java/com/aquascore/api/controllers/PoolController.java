@@ -1,7 +1,9 @@
 package com.aquascore.api.controllers;
 
 import com.aquascore.api.models.Pool;
+import com.aquascore.api.models.Score;
 import com.aquascore.api.services.PoolService;
+import com.aquascore.api.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +16,22 @@ public class PoolController {
     @Autowired
     private PoolService poolService;
 
+    @Autowired
+    private ScoreService scoreService;
+
     @GetMapping("/")
-    public List<Pool> create(HttpServletRequest req) {
+    public List<Pool> getAll(HttpServletRequest req) {
         return poolService.getFromUser(req);
+    }
+
+    @GetMapping("/{id}")
+    public Pool getById(@PathVariable("id") long id, HttpServletRequest req) {
+        return poolService.getById(id, req);
+    }
+
+    @GetMapping("/{id}/scores")
+    public List<Score> getScores(@PathVariable("id") long id, HttpServletRequest req) {
+        return scoreService.getAll(id);
     }
 
     @PostMapping("/")
