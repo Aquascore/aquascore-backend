@@ -30,6 +30,11 @@ public class DriverController{
         return driverService.getAll();
     }
 
+    @GetMapping("/{driver_id}")
+    public Driver getById(@PathVariable("driver_id") long driverId){
+        return driverService.getById(driverId);
+    }
+
     @PostMapping("/")
     public Driver create(@RequestBody Driver newDriver){
         Driver temp = driverService.create(newDriver);

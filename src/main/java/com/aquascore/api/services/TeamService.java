@@ -17,6 +17,10 @@ public class TeamService {
     @Autowired
     private DriverRepository driverRepository;
 
+    public Team getById(long id){
+        return teamRepository.findById(id);
+    }
+
     public List<Team> getAll() {
         return teamRepository.findAll();
     }
