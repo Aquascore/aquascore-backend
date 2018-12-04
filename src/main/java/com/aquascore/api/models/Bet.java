@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "bets")
-@SecondaryTable(name = "current_bets")
 public class Bet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
