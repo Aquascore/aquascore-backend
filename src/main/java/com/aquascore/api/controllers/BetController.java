@@ -18,4 +18,14 @@ public class BetController {
     public List<Bet> getAll(HttpServletRequest req) {
         return betService.getAll();
     }
+
+    @PostMapping("/")
+    public Bet create(@RequestBody Bet newBet) {
+        return betService.create(newBet);
+    }
+
+    @DeleteMapping("/{betId}")
+    public void remove(@PathVariable("betId") long betId) {
+        betService.remove(betId);
+    }
 }
