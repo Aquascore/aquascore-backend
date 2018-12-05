@@ -19,6 +19,11 @@ public class TeamController {
         return teamService.getAll();
     }
 
+    @GetMapping("/{team_id}")
+    public Team getById(@PathVariable("team_id") long teamId){
+        return teamService.getById(teamId);
+    }
+
     @PostMapping("/")
     public Team create(@RequestBody Team newTeam) {
         return teamService.create(newTeam);

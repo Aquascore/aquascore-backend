@@ -13,6 +13,10 @@ public class DriverService{
     @Autowired
     private DriverRepository driverRepository;
 
+    public Driver getById(long id){
+        return driverRepository.findById(id);
+    }
+
     public List<Driver> getAll(){
         return driverRepository.findAll();
     }
