@@ -63,4 +63,8 @@ public class DriverService {
         teamRepository.save(currentTeam);
         driverRepository.delete(driver);
     }
+
+    public List<Driver> findByName(String query){
+        return driverRepository.findAllByFirstnameContainingOrLastnameContaining(query, query);
+    }
 }
