@@ -23,4 +23,16 @@ public class Race {
         this.name = name;
         this.date = date;
     }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Date getDate(){
+        return this.date;
+    }
 }

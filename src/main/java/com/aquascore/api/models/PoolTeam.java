@@ -5,47 +5,53 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-public class PoolTeam{
-    private long id;
+@Entity
+@Table(name = "user_teams")
+public class PoolTeam {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    // foreign keys
-    private long userid;
-    private long poolid;
-    private long raceid;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @NotNull
+    private User user;
 
-    // drivers
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @NotNull
+    private Race race;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @NotNull
+    private Pool pool;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "poolTeam_drivers",
+        joinColumns = {@JoinColumn(name="poolTeam_id")}
+    )
     private List<Driver> drivers;
 
-    public long getId(){
+    public Long getId(){
         return this.id;
     }
 
-    public long getUserid(){
-        return this.userid;
+    public Long getUserid(){
+        return this.user.getId();
     }
 
-    public long getPoolid(){
-        return this.poolid;
+    public Long getPoolid(){
+        return this.pool.getId();
     }
 
-    public long getRaceid(){
-        return this.raceid;
+    public Long getRaceid(){
+        return this.race.getId();
     }
 
     public List<Driver> getDrivers(){
-        return this.drivers;
-    }
-
-    public void setUserid(long id){
-        this.userid = id;
-    }
-
-    public void setPoolid(long id){
-        this.poolid = id;
-    }
-
-    public void setRaceid(long id){
-        this.raceid = id;
+        return drivers;
     }
 
     public void setDrivers(List<Driver> drivers){
