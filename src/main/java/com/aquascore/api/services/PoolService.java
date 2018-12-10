@@ -24,6 +24,10 @@ public class PoolService {
     @Autowired
     private UserService userService;
 
+    public Pool getById(long id) {
+        return poolRepository.findById(id);
+    }
+
     public List<Pool> getFromUser(HttpServletRequest req) {
         User currentUser = userService.getCurrentUser(req);
         return poolRepository.findByUsers(currentUser);

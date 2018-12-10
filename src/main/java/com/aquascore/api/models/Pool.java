@@ -36,6 +36,13 @@ public class Pool {
     )
     private List<User> users;
 
+    public Pool() {
+    }
+
+    public Pool(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,6 +61,10 @@ public class Pool {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public List<User> getUsers() {

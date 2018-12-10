@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "driver")
-public class Driver{
+public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +27,15 @@ public class Driver{
     @NotNull
     @Column(name = "team_id")
     private long teamid;
+
+    public Driver() {
+    }
+
+    public Driver(String firstname, String lastname, float salary) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.salary = salary;
+    }
 
     public long getId() {
         return id;

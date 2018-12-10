@@ -1,9 +1,6 @@
-# Aquascore API
+# Testing Opdracht 3: Practicum JUnit Unittesting
 
-## Setting up database
-On Mac OSX or Linux, run:
 
-    $ mysql -u root -p < scripts/make-db.sql
-
-On Windows, copy the script in `scripts/make-db.sql` and run it in MySQL
-Workbench.
+## Studenten
+Steven Oud (500776959)
+Arjan Golabijan (500761038)
