@@ -9,7 +9,7 @@ import java.util.Date;
 public class Race {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @Column
     @NotNull

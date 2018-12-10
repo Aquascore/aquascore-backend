@@ -22,7 +22,6 @@ public class RaceService {
 
     public Race create(Race newRace) {
         raceRepository.save(newRace);
-        System.out.println(newRace);
         return newRace;
     }
 }
