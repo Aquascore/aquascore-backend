@@ -39,17 +39,20 @@ public class TeamServiceTest {
 
     private Team dummyTeam;
 
+    private List<Team> dummyTeams;
+
 
 
     @Before
     public void setUp(){
         dummyTeam = new Team("Red Bull");
-        Driver dummyDriver1 = new Driver("Max", "Verstappen",3000000);
-        Driver dummyDriver2 = new Driver("Sebastian", "Vettal",1100000);
-        Driver dummyDriver3 = new Driver("Super", "Racer",2500000);
+        teamService.create(dummyTeam);
 
+        dummyTeams = new ArrayList<>();
+        dummyTeams.add(dummyTeam);
+
+        when(teamService.getAll()).thenReturn(dummyTeams);
         when(teamService.getById(anyLong())).thenReturn(dummyTeam);
-
 
         teamService.create(dummyTeam);
 
@@ -59,7 +62,7 @@ public class TeamServiceTest {
     public void testById(){
         Team result = teamService.getById(1);
 
-        Assert.assertEquals("Red Bull" , result.getName());
+        Assert.assertThat(result, equalTo(dummyTeam));
     }
 
 
@@ -74,23 +77,19 @@ public class TeamServiceTest {
     }
 
     @Test
-    public void testAddDriver(){
+    public void testAddDriverToTeam(){
         teamService.addDriver(1,1);
 
-        Driver result = teamService.getById(1).getDrivers().get(0);
+        int result = teamService.getById(1).getDrivers().size();
 
-        Assert.assertNotNull(result);
-        Assert.assertEquals("Max",result.getFirstname());
-        Assert.assertEquals("Verstappen",result.getLastname());
+        Assert.assertEquals(1 , result);
 
     }
 
 
-    @Test
+    @Test(expected = Exception.class)
     public void testGetTeamWrongId(){
-        Object result = teamService.getById(-200);
-
-        Assert.assertNull(result);
+        teamService.remove(-1919191919);
     }
 
 
