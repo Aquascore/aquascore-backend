@@ -21,11 +21,19 @@ public class Team{
     @Column
     private String teamcol;
 
+    public Team(){
+    }
+
+    public Team(@NotBlank String name) {
+        this.name = name;
+    }
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "team_drivers",
         joinColumns = {@JoinColumn(name="team_id")}
     )
+
     private List<Driver> drivers;
 
     public long getId() {
