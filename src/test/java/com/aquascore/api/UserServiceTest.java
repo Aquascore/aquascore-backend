@@ -53,7 +53,7 @@ public class UserServiceTest {
 
         when(userRepository.findByEmail(eq("wanderson@hotmail.com"))).thenReturn(dummyUser);
         when(userRepository.existsByEmail(eq("wanderson@hotmail.com"))).thenReturn(true);
-        when(userRepository.findById(anyLong())).thenReturn(dummyUser);
+        when(userRepository.findById(1)).thenReturn(dummyUser);
         when(jwtTokenProvider.createToken(anyString(), any())).thenReturn(MOCK_TOKEN);
     }
 
@@ -107,6 +107,20 @@ public class UserServiceTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(MOCK_TOKEN, result.get("token"));
+    }
+
+    @Test
+    public void testFindByBadId(){
+        User result = userService.findById(-500);
+
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testFindByBadEmail(){
+        User result = userService.findByEmail("xxxxxxxxxxxxxxxxxx");
+
+        Assert.assertNull(result);
     }
 
     @Test(expected = ResponseStatusException.class)

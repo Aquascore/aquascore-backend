@@ -39,24 +39,47 @@ public class TeamServiceTest {
 
     private Team dummyTeam;
 
+    private Driver dummyDriver;
+
     private List<Team> dummyTeams;
 
 
 
     @Before
     public void setUp(){
-        dummyTeam = new Team("Red Bull");
-        teamService.create(dummyTeam);
+        dummyTeam = new Team("Dummy Team 1");
 
         dummyTeams = new ArrayList<>();
         dummyTeams.add(dummyTeam);
 
+        dummyDriver = new Driver("Jan" , "Man", 2000);
         when(teamService.getAll()).thenReturn(dummyTeams);
         when(teamService.getById(anyLong())).thenReturn(dummyTeam);
 
-        teamService.create(dummyTeam);
 
     }
+
+    @Test
+    public void testGetAll(){
+        List<Team> result = teamService.getAll();
+
+        Assert.assertFalse(result.isEmpty());
+        Assert.assertEquals(result, dummyTeams);
+
+    }
+
+    @Test
+    public void testCreateMultipleTeams(){
+        Team createTeam1 = new Team("Dummy team 2");
+        Team createTeam2 = new Team("Dummy team 3");
+        dummyTeams.add(createTeam1);
+        dummyTeams.add(createTeam2);
+
+        List<Team> result = teamService.getAll();
+
+        Assert.assertEquals(3 , result.size());
+    }
+
 
     @Test
     public void testById(){
@@ -69,7 +92,6 @@ public class TeamServiceTest {
     @Test
     public void testEditTeam(){
         Team expectedTeam = new Team("Mercedes");
-        Team team = teamService.getById(1);
 
         teamService.edit(expectedTeam , 1);
 
@@ -85,7 +107,6 @@ public class TeamServiceTest {
         Assert.assertEquals(1 , result);
 
     }
-
 
     @Test(expected = Exception.class)
     public void testGetTeamWrongId(){

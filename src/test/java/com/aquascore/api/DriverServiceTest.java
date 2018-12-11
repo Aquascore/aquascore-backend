@@ -1,6 +1,7 @@
 package com.aquascore.api;
 
 import com.aquascore.api.models.Driver;
+import com.aquascore.api.models.Team;
 import com.aquascore.api.repositories.DriverRepository;
 import com.aquascore.api.repositories.TeamRepository;
 import com.aquascore.api.services.DriverService;
@@ -96,5 +97,32 @@ public class DriverServiceTest {
     @Test(expected = Exception.class)
     public void testRemoveBadId() {
         driverService.remove(-1298252);
+    }
+
+    @Test
+    public void testEditDriver(){
+        Driver newDriver = new Driver("Donkey", "Kong", 40000);
+
+        driverService.edit(newDriver, 1);
+
+        Assert.assertEquals("Donkey", driverService.getById(1).getFirstname());
+        Assert.assertEquals("Kong", driverService.getById(1).getLastname());
+
+    }
+
+    @Test
+    public void testCreateMultipleDrivers(){
+        Driver createDriver1 = new Driver("Donkey", "Kong", 40000);
+        Driver createDriver2 = new Driver("Princess", "Peach", 40000);
+        dummyDrivers.add(createDriver1);
+        dummyDrivers.add(createDriver2);
+
+        List<Driver> result = driverService.getAll();
+
+        Assert.assertEquals(3 , result.size());
+
+
+
+
     }
 }
