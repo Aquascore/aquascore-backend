@@ -16,14 +16,15 @@ public class CurrentBet {
     @NotNull
     private User user;
 
-    @NotBlank
-    @Column
-    private String bet;
-
     @ManyToOne
     @PrimaryKeyJoinColumn
     @NotNull
-    private Race race;
+    private Bet bet;
+
+    @NotBlank
+    @Column
+    private String prediction;
+
 
     public long getId() {
         return id;
@@ -33,15 +34,23 @@ public class CurrentBet {
         return user.getId();
     }
 
-    public String getBet() {
-        return bet;
+    public Long getBetId(){
+        return bet.getId();
     }
 
-    public Long getRaceId() {
-        return race.getId();
+    public String getPrediction() {
+        return prediction;
     }
 
-    public void setPoints(String bet) {
+    public void setPrediction(String prediction){
+        this.prediction = prediction;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public void setBet(Bet bet){
         this.bet = bet;
     }
 }
