@@ -21,7 +21,12 @@ public class RaceService {
     }
 
     public Race create(Race newRace) {
-        raceRepository.save(newRace);
+        Race tmpRace = raceRepository.findByDate(newRace.getDate());
+        String name1 = tmpRace.getName();
+        String name2 = newRace.getName();
+        if(tmpRace == null || !tmpRace.getName().equals(newRace.getName())){
+            raceRepository.save(newRace);
+        }
         return newRace;
     }
 }

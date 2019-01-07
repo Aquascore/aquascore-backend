@@ -20,7 +20,10 @@ public class RaceController {
     }
 
     @PostMapping("/")
-    public Race create(@RequestBody Race newRace) {
-        return raceService.create(newRace);
+    public List<Race> createAll(@RequestBody List<Race> newRaces) {
+        for(Race tmpRace : newRaces){
+            raceService.create(tmpRace);
+        }
+        return newRaces;
     }
 }

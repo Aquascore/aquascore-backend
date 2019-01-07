@@ -19,8 +19,11 @@ public class Race {
     @NotNull
     private Date date;
 
-    public Race(String name, Date date) {
+    public void setName(String name){
         this.name = name;
+    }
+
+    public void setDate(Date date){
         this.date = date;
     }
 
