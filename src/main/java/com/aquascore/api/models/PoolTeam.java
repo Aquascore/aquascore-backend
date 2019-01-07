@@ -50,6 +50,18 @@ public class PoolTeam {
         return this.race.getId();
     }
 
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public void setPool(Pool pool){
+        this.pool = pool;
+    }
+
+    public void setRace(Race race){
+        this.race = race;
+    }
+
     public List<Driver> getDrivers(){
         return drivers;
     }

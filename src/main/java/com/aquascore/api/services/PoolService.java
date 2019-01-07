@@ -29,6 +29,10 @@ public class PoolService {
         return poolRepository.findByUsers(currentUser);
     }
 
+    public Pool findById(long poolId){
+        return poolRepository.findById(poolId);
+    }
+
     public Pool create(Pool newPool, HttpServletRequest req) {
         User currentUser = userService.getCurrentUser(req);
         newPool.setOwner(currentUser);
