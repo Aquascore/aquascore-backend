@@ -21,6 +21,11 @@ public class CurrentBet {
     @NotNull
     private Bet bet;
 
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @NotNull
+    private Race race;
+
     @NotBlank
     @Column
     private String prediction;
@@ -32,6 +37,10 @@ public class CurrentBet {
 
     public Long getUserId() {
         return user.getId();
+    }
+
+    public long getRaceId(){
+        return race.getId();
     }
 
     public Long getBetId(){
@@ -52,5 +61,9 @@ public class CurrentBet {
 
     public void setBet(Bet bet){
         this.bet = bet;
+    }
+
+    public void setRace(Race race){
+        this.race = race;
     }
 }
