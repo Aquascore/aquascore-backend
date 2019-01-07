@@ -24,14 +24,9 @@ public class PoolController {
         return poolService.getFromUser(req);
     }
 
-    @GetMapping("/{id}")
-    public Pool getById(@PathVariable("id") long id, HttpServletRequest req) {
-        return poolService.getById(id, req);
-    }
-
-    @GetMapping("/{id}/scores")
-    public List<Score> getScores(@PathVariable("id") long id, HttpServletRequest req) {
-        return scoreService.getAll(id);
+    @GetMapping("/{pool_id}/scores")
+    public List<Score> getScores(@PathVariable("pool_id") long poolId, HttpServletRequest req) {
+        return scoreService.getAll(poolId);
     }
 
     @GetMapping("/{pool_id}")
