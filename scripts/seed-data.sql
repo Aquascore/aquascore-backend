@@ -127,10 +127,8 @@ CREATE TABLE `race` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
   `score` bigint(20) DEFAULT NULL,
-  `pool_id` bigint(20) NOT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK8hsec7gp8a1q5phn2uhip16cj` (`pool_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
