@@ -34,6 +34,11 @@ public class PoolController {
         return scoreService.getAll(id);
     }
 
+    @GetMapping("/{pool_id}")
+    public Pool getById(@PathVariable("pool_id") long poolId){
+        return poolService.findById(poolId);
+    }
+
     @PostMapping("/")
     public Pool create(@RequestBody Pool newPool, HttpServletRequest req) {
         return poolService.create(newPool, req);

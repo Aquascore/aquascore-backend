@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/find")
-    public List<User> find(@RequestParam String query) {
-        return userService.findByNameOrEmail(query);
+    public User find(@RequestParam String query) {
+        return userService.findByEmail(query);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 public class Race {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @Column
     @NotNull
@@ -19,8 +19,23 @@ public class Race {
     @NotNull
     private Date date;
 
-    public Race(String name, Date date) {
+    public void setName(String name){
         this.name = name;
+    }
+
+    public void setDate(Date date){
         this.date = date;
+    }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Date getDate(){
+        return this.date;
     }
 }

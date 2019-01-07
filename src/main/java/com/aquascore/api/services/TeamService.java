@@ -32,6 +32,9 @@ public class TeamService {
 
     public void remove(long teamId) {
         Team team = teamRepository.findById(teamId);
+        for(Driver driver : team.getDrivers()){
+            driverRepository.delete(driver);
+        }
         teamRepository.delete(team);
     }
 
